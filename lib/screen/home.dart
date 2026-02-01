@@ -1,3 +1,10 @@
+import 'package:cpu_z_clone/screen/about.dart';
+import 'package:cpu_z_clone/screen/battery.dart';
+import 'package:cpu_z_clone/screen/device.dart';
+import 'package:cpu_z_clone/screen/sensors.dart';
+import 'package:cpu_z_clone/screen/soc.dart';
+import 'package:cpu_z_clone/screen/system.dart';
+import 'package:cpu_z_clone/screen/thermal.dart';
 import 'package:cpu_z_clone/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +17,8 @@ class HomeScreen extends StatelessWidget {
       length: 7,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: AppColor.background,
+          automaticallyImplyLeading: false,
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -44,19 +53,22 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
           bottom: TabBar.secondary(
+            tabAlignment: TabAlignment.start,
             isScrollable: true,
+            padding: EdgeInsets.zero,
             labelStyle: TextStyle(
-                color: Color(0xffAE8AEA),
-                fontSize: 20,
-                fontWeight: FontWeight.w500
+              color: Color(0xffAE8AEA),
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
             ),
-            unselectedLabelStyle:TextStyle(
-                color: Color(0xffA6A6A6),
-                fontSize: 20,
-                fontWeight: FontWeight.w500
+            unselectedLabelStyle: TextStyle(
+              color: Color(0xffA6A6A6),
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
             ),
             indicatorColor: Color(0xff3303AD),
             indicatorSize: TabBarIndicatorSize.tab,
+            indicatorWeight: 2,
             tabs: <Widget>[
               Tab(child: Text("SOC")),
               Tab(child: Text("DEVICE")),
@@ -67,11 +79,17 @@ class HomeScreen extends StatelessWidget {
               Tab(child: Text("ABOUT")),
             ],
           ),
-          backgroundColor: AppColor.background,
-          automaticallyImplyLeading: false,
         ),
-        body: Center(
-          child: Text('cpu_z'),
+        body: TabBarView(
+          children: [
+            SocScreen(),
+            DeviceScreen(),
+            SystemScreen(),
+            BatteryScreen(),
+            ThermalScreen(),
+            SensorsScreen(),
+            AboutScreen(),
+          ],
         ),
       ),
     );
