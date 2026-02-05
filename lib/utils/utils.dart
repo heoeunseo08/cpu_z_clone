@@ -13,4 +13,42 @@ class Utils {
       scaffoldBackgroundColor: AppColor.background,
     );
   }
+
+  static Widget buildSession({required String name, required String value}) {
+    return Container(
+      height: 32,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(width: 1, color: Color(0xff303030)),
+        ),
+      ),
+      child: Row(
+        children: [
+          Flexible(
+            fit: FlexFit.tight,
+            child: Text(
+              name,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+          Flexible(
+            fit: FlexFit.tight,
+            child: Text(
+              value,
+              style: TextStyle(
+                color: AppColor.primary,
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
